@@ -11,7 +11,7 @@ export default function Home() {
           <ModeToggle />
         </div>
         {Array.from({ length: 10 }).map((_, i) => (
-          <Card key={i} className="rounded-none border-2">
+          <Card key={i} className="rounded-none">
             <Image src="/test-post.jpg" alt="" width={400} height={400} />
             <CardContent className="flex p-4 items-center gap-5">
               <Image

@@ -2,7 +2,7 @@ import MainNav from "./MainNav";
 
 function MainLayout({ children }: { children: React.ReactNode }) {
   return (
-    <div className="grid grid-cols-1 xl:grid-cols-[auto_1fr]">
+    <div className="grid grid-cols-1 xl:grid-cols-[auto_1fr] bg-background text-foreground">
       <MainNav />
       {children}
     </div>

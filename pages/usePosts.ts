@@ -1,5 +1,5 @@
 import { useInfiniteQuery } from "@tanstack/react-query";
-import { getAllPosts } from "../../services/apiPost";
+import { getAllPosts } from "../services/apiPost";
 
 export function usePosts() {
   const {

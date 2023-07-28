@@ -12,6 +12,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import Logo from "@/components/Logo";
+import { useLogin } from "./useLogin";
 
 const formSchema = z.object({
   email: z.string().email({ message: "Invalid email address" }),
@@ -30,7 +31,8 @@ function LoginForm() {
       password: "",
     },
   });
-  const onSubmit = (values: FormData) => {};
+  const { isLoading: isLoggingIn, mutate: login } = useLogin();
+  const onSubmit = (values: FormData) => login(values);
   return (
     <div className="flex flex-col min-h-screen justify-center">
       <Form {...form}>
@@ -47,7 +49,7 @@ function LoginForm() {
               <FormItem>
                 <FormLabel>Email</FormLabel>
                 <FormControl>
-                  <Input type="email" {...field} />
+                  <Input type="email" {...field} disabled={isLoggingIn} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -60,14 +62,14 @@ function LoginForm() {
               <FormItem>
                 <FormLabel>Password</FormLabel>
                 <FormControl>
-                  <Input type="password" {...field} />
+                  <Input type="password" {...field} disabled={isLoggingIn} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
             )}
           />
-          <Button type="submit" className="w-full">
-            Login
+          <Button type="submit" className="w-full" disabled={isLoggingIn}>
+            {isLoggingIn ? "Logging In..." : "Login"}
           </Button>
         </form>
       </Form>

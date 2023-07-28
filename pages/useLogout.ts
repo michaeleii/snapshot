@@ -1,16 +1,16 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { logout } from "../../services/apiAuth";
-import { useNavigate } from "react-router-dom";
+import { logout } from "../services/apiAuth";
+import { useRouter } from "next/router";
 
 export function useLogout() {
-  const navigate = useNavigate();
+  const router = useRouter();
   const queryClient = useQueryClient();
   const { mutate, isLoading, error } = useMutation({
-    mutationKey: ["login"],
+    mutationKey: ["logout"],
     mutationFn: logout,
     onSuccess: async () => {
       await queryClient.invalidateQueries({ queryKey: ["user"] });
-      navigate("/");
+      router.push("/");
     },
   });
   return { mutate, isLoading, error };

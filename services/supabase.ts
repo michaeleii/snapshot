@@ -2,7 +2,7 @@ import { createClient } from "@supabase/supabase-js";
 import { Database } from "../types/schema";
 
 export const supabaseUrl = "https://lzrslhygdxwyshinircf.supabase.co";
-const supabaseKey = process.env.SUPABASE_KEY;
+const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_KEY;
 
 if (!supabaseKey) throw new Error("Missing SUPABASE_KEY");
 

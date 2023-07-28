@@ -4,7 +4,7 @@ import Logo from "./Logo";
 import { Button } from "@/components/ui/button";
 import { ModeToggle } from "./ModeToggle";
 import { useUser } from "@/contexts/UserContext";
-import { useLogout } from "@/pages/useLogout";
+import { useLogout } from "@/hooks/useLogout";
 
 function MainNav() {
   const { currentUser, isAuthenticated } = useUser();

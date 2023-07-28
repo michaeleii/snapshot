@@ -17,7 +17,7 @@ export default function Home() {
   if (!posts) return null;
   return (
     <MainLayout>
-      <div className="relative grid grid-cols-1 justify-items-center gap-10 overflow-y-auto p-10  px-5 xl:max-h-screen xl:p-20 snap-y snap-mandatory scroll-smooth">
+      <div className="relative grid grid-cols-1 justify-items-center gap-10 overflow-y-auto p-10  px-5 xl:max-h-screen xl:p-20 snap-y snap-mandatory scroll-smooth bg-secondary/50">
         <div className="absolute right-2 top-2 hidden xl:block">
           <ModeToggle />
         </div>

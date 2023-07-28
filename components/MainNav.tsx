@@ -6,6 +6,8 @@ import { ModeToggle } from "./ModeToggle";
 import { useUser } from "@/contexts/UserContext";
 import { useLogout } from "@/hooks/useLogout";
 
+import { Settings } from "lucide-react";
+
 function MainNav() {
   const { currentUser, isAuthenticated } = useUser();
   const { mutate: logout, isLoading: isLoggingOut } = useLogout();
@@ -14,6 +16,13 @@ function MainNav() {
     <nav className="p-5 xl:p-10 xl:border-r xl:border-b-0 border-b xl:min-h-screen flex flex-col relative">
       <div className="absolute right-2 top-2 block xl:hidden">
         <ModeToggle />
+      </div>
+      <div className="absolute left-2 top-2 block xl:hidden">
+        <Button asChild variant="ghost" className="w-full xl:hidden">
+          <Link href="/settings">
+            <Settings />
+          </Link>
+        </Button>
       </div>
       <div className="p-5">
         <Logo />
@@ -44,6 +53,9 @@ function MainNav() {
         <div className="flex xl:flex-col gap-2 mt-auto mb-5">
           <Button asChild className="w-full">
             <Link href="/upload">Create Post</Link>
+          </Button>
+          <Button asChild className="w-full hidden xl:flex">
+            <Link href="/settings">Settings</Link>
           </Button>
           <Button
             variant="outline"

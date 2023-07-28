@@ -1,14 +1,14 @@
+import { useUser } from "@/contexts/UserContext";
+import { useRouter } from "next/router";
 import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import { useUser } from "./UserContext";
 
 function ProtectedRoute({ children }: { children: React.ReactNode }) {
-  const navigate = useNavigate();
+  const router = useRouter();
   const { isAuthenticated, isLoadingUser } = useUser();
 
   useEffect(() => {
-    if (!isAuthenticated) navigate("/login", { replace: true });
-  }, [isAuthenticated, navigate]);
+    if (!isAuthenticated) router.replace("/login");
+  }, [isAuthenticated, router]);
 
   if (isLoadingUser) return null;
 

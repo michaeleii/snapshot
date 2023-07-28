@@ -8,6 +8,7 @@ import { useLogout } from "@/pages/useLogout";
 
 function MainNav() {
   const { currentUser, isAuthenticated } = useUser();
+  const { mutate: logout, isLoading: isLoggingOut } = useLogout();
 
   return (
     <nav className="p-5 xl:p-10 xl:border-r xl:border-b-0 border-b xl:min-h-screen flex flex-col relative">
@@ -44,8 +45,13 @@ function MainNav() {
           <Button asChild className="w-full">
             <Link href="/upload">Create Post</Link>
           </Button>
-          <Button variant="outline" className="w-full">
-            Logout
+          <Button
+            variant="outline"
+            className="w-full"
+            disabled={isLoggingOut}
+            onClick={() => logout()}
+          >
+            {isLoggingOut ? "Logging out" : "Logout"}
           </Button>
         </div>
       )}

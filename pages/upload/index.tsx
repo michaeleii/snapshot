@@ -9,6 +9,7 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { useCreatePost } from "./useCreatePost";
+import ProtectedRoute from "@/components/ProtectedRoute";
 
 function Upload() {
   const { mutate: createPost, isLoading: isUploading } = useCreatePost();
@@ -23,31 +24,33 @@ function Upload() {
     }
   }
   return (
-    <MainLayout>
-      <div className="xl:min-h-screen w-full flex justify-center items-center xl:border mt-20 xl:mt-0">
-        <Card className="max-w-md xl:border border-0">
-          <CardHeader>
-            <CardTitle>Create post</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <form>
-              <div className="grid w-full items-center gap-4">
-                <Input
-                  id="picture"
-                  type="file"
-                  accept="image/png, image/jpeg"
-                />
-              </div>
-            </form>
-          </CardContent>
-          <CardFooter>
-            <Button className="w-full" disabled={isUploading}>
-              {isUploading ? "Uploading..." : "Upload"}
-            </Button>
-          </CardFooter>
-        </Card>
-      </div>
-    </MainLayout>
+    <ProtectedRoute>
+      <MainLayout>
+        <div className="xl:min-h-screen w-full flex justify-center items-center xl:border mt-20 xl:mt-0">
+          <Card className="max-w-md xl:border border-0">
+            <CardHeader>
+              <CardTitle>Create post</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <form onSubmit={handleSubmit}>
+                <div className="grid w-full items-center gap-4">
+                  <Input
+                    id="picture"
+                    type="file"
+                    accept="image/png, image/jpeg"
+                  />
+                </div>
+              </form>
+            </CardContent>
+            <CardFooter>
+              <Button className="w-full" disabled={isUploading}>
+                {isUploading ? "Uploading..." : "Upload"}
+              </Button>
+            </CardFooter>
+          </Card>
+        </div>
+      </MainLayout>
+    </ProtectedRoute>
   );
 }
 export default Upload;

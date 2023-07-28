@@ -1,9 +1,9 @@
 import { useMutation } from "@tanstack/react-query";
 import { signUp } from "../../services/apiAuth";
-import { useNavigate } from "react-router-dom";
+import { useRouter } from "next/router";
 
 export function useSignUp() {
-  const navigate = useNavigate();
+  const router = useRouter();
   const { mutate, isLoading, error } = useMutation({
     mutationKey: ["login"],
     mutationFn: ({
@@ -16,7 +16,7 @@ export function useSignUp() {
       password: string;
     }) => signUp(username, email, password),
     onSuccess: () => {
-      navigate("/");
+      router.replace("/");
     },
   });
   return { mutate, isLoading, error };

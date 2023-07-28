@@ -13,6 +13,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import Logo from "@/components/Logo";
+import { useSignUp } from "./useSignup";
 
 const formSchema = z.object({
   username: z
@@ -27,6 +28,7 @@ const formSchema = z.object({
 type FormData = z.infer<typeof formSchema>;
 
 function RegisterForm() {
+  const { mutate: signUp, isLoading: isSigningUp } = useSignUp();
   const form = useForm<FormData>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -34,7 +36,7 @@ function RegisterForm() {
       password: "",
     },
   });
-  const onSubmit = (values: FormData) => {};
+  const onSubmit = (values: FormData) => signUp(values);
   return (
     <div className="flex flex-col min-h-screen justify-center">
       <Form {...form}>
@@ -43,6 +45,9 @@ function RegisterForm() {
           className="space-y-5 px-5 xl:px-20"
         >
           <Logo />
+          <FormDescription className="mt-5 text-center text-2xl font-medium tracking-tighter">
+            Sign up to post photos.
+          </FormDescription>
 
           <FormField
             control={form.control}
@@ -51,7 +56,7 @@ function RegisterForm() {
               <FormItem>
                 <FormLabel>Username</FormLabel>
                 <FormControl>
-                  <Input type="text" {...field} />
+                  <Input type="text" {...field} disabled={isSigningUp} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -65,7 +70,7 @@ function RegisterForm() {
               <FormItem>
                 <FormLabel>Email</FormLabel>
                 <FormControl>
-                  <Input type="email" {...field} />
+                  <Input type="email" {...field} disabled={isSigningUp} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -78,14 +83,14 @@ function RegisterForm() {
               <FormItem>
                 <FormLabel>Password</FormLabel>
                 <FormControl>
-                  <Input type="password" {...field} />
+                  <Input type="password" {...field} disabled={isSigningUp} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
             )}
           />
           <Button type="submit" className="w-full">
-            Register
+            {isSigningUp ? "Signing Up..." : "Sign Up"}
           </Button>
         </form>
       </Form>

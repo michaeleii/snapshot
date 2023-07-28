@@ -18,13 +18,15 @@ function MainNav() {
       <div className="absolute right-2 top-2 block xl:hidden">
         <ModeToggle />
       </div>
-      <div className="absolute left-2 top-2 block xl:hidden">
-        <Button asChild variant="ghost" className="w-full xl:hidden">
-          <Link href="/settings">
-            <Settings />
-          </Link>
-        </Button>
-      </div>
+      {isAuthenticated && (
+        <div className="absolute left-2 top-2 block xl:hidden">
+          <Button asChild variant="ghost" className="w-full xl:hidden">
+            <Link href="/settings">
+              <Settings />
+            </Link>
+          </Button>
+        </div>
+      )}
       <div className="p-5">
         <Logo />
       </div>

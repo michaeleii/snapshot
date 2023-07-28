@@ -12,6 +12,7 @@ export default function Home() {
     isFetchingNextPage,
     isLoading,
   } = usePosts();
+
   if (isLoading) return null;
   if (!posts) return null;
   return (

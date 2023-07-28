@@ -10,6 +10,7 @@ import { Settings } from "lucide-react";
 
 function MainNav() {
   const { currentUser, isAuthenticated } = useUser();
+
   const { mutate: logout, isLoading: isLoggingOut } = useLogout();
 
   return (

@@ -12,7 +12,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import Logo from "@/components/Logo";
-import { useLogin } from "./useLogin";
+import { useLogin } from "@/hooks/useLogin";
 
 const formSchema = z.object({
   email: z.string().email({ message: "Invalid email address" }),

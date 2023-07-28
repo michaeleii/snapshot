@@ -8,7 +8,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { useCreatePost } from "./useCreatePost";
+import { useCreatePost } from "@/hooks/useCreatePost";
 import ProtectedRoute from "@/components/ProtectedRoute";
 
 function Upload() {

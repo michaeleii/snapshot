@@ -13,7 +13,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import Logo from "@/components/Logo";
-import { useSignUp } from "./useSignup";
+import { useSignUp } from "@/hooks/useSignup";
 
 const formSchema = z.object({
   username: z

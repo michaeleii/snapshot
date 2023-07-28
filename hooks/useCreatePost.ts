@@ -1,5 +1,5 @@
 import { useMutation } from "@tanstack/react-query";
-import { createPost } from "../../services/apiPost";
+import { createPost } from "../services/apiPost";
 import { useRouter } from "next/router";
 
 export function useCreatePost() {

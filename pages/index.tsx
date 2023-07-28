@@ -1,7 +1,7 @@
 import MainLayout from "@/components/MainLayout";
 import { ModeToggle } from "@/components/ModeToggle";
 import ImageCard from "./ImageCard";
-import { usePosts } from "./usePosts";
+import { usePosts } from "@/hooks/usePosts";
 import { Button } from "@/components/ui/button";
 
 export default function Home() {

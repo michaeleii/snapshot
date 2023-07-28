@@ -1,5 +1,5 @@
 import { useMutation } from "@tanstack/react-query";
-import { signUp } from "../../services/apiAuth";
+import { signUp } from "../services/apiAuth";
 import { useRouter } from "next/router";
 
 export function useSignUp() {

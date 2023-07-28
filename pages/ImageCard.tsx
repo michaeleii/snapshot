@@ -24,7 +24,7 @@ function ImageCard({
   const isOwner = currentUser?.id === userId;
 
   return (
-    <Card className="rounded-none">
+    <Card className="rounded-none snap-center">
       <Image src={image} alt="" width={400} height={400} />
       <CardContent className="flex p-4 items-center justify-between gap-5">
         <div className="flex gap-3 items-center">

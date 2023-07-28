@@ -4,12 +4,12 @@ import { useRouter } from "next/router";
 
 export function useCreatePost() {
   const router = useRouter();
-  const { mutate, isLoading } = useMutation({
+  const { mutate, isLoading, error } = useMutation({
     mutationKey: ["createPost"],
     mutationFn: (image: File) => createPost(image),
     onSuccess: () => {
       router.replace("/");
     },
   });
-  return { mutate, isLoading };
+  return { mutate, isLoading, error };
 }

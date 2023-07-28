@@ -12,13 +12,20 @@ import { useCreatePost } from "@/hooks/useCreatePost";
 import ProtectedRoute from "@/components/ProtectedRoute";
 
 function Upload() {
-  const { mutate: createPost, isLoading: isUploading } = useCreatePost();
+  const {
+    mutate: createPost,
+    isLoading: isUploading,
+    error: ImageUploadError,
+  } = useCreatePost();
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     if (e.target instanceof HTMLFormElement) {
       const formData = new FormData(e.target);
-      const image = formData.get("image");
+
+      const image = formData.get("picture");
+      console.log(image);
       if (image instanceof File) {
+        console.log(formData);
         createPost(image);
       }
     }
@@ -32,21 +39,20 @@ function Upload() {
               <CardTitle>Create post</CardTitle>
             </CardHeader>
             <CardContent>
-              <form onSubmit={handleSubmit}>
+              <form onSubmit={handleSubmit} className="space-y-5">
                 <div className="grid w-full items-center gap-4">
                   <Input
+                    name="picture"
                     id="picture"
                     type="file"
                     accept="image/png, image/jpeg"
                   />
                 </div>
+                <Button className="w-full" disabled={isUploading}>
+                  {isUploading ? "Uploading..." : "Upload"}
+                </Button>
               </form>
             </CardContent>
-            <CardFooter>
-              <Button className="w-full" disabled={isUploading}>
-                {isUploading ? "Uploading..." : "Upload"}
-              </Button>
-            </CardFooter>
           </Card>
         </div>
       </MainLayout>

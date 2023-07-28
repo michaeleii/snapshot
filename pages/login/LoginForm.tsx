@@ -31,7 +31,11 @@ function LoginForm() {
       password: "",
     },
   });
-  const { isLoading: isLoggingIn, mutate: login } = useLogin();
+  const {
+    isLoading: isLoggingIn,
+    mutate: login,
+    error: loginError,
+  } = useLogin();
   const onSubmit = (values: FormData) => login(values);
   return (
     <div className="flex flex-col min-h-screen justify-center">
@@ -40,7 +44,14 @@ function LoginForm() {
           onSubmit={form.handleSubmit(onSubmit)}
           className="space-y-5 px-5 xl:px-20"
         >
-          <Logo />
+          <div className="mb-5">
+            <Logo />
+          </div>
+          {loginError instanceof Error && (
+            <FormMessage className="text-center">
+              {loginError.message}
+            </FormMessage>
+          )}
 
           <FormField
             control={form.control}

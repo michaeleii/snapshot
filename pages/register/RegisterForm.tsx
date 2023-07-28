@@ -28,7 +28,11 @@ const formSchema = z.object({
 type FormData = z.infer<typeof formSchema>;
 
 function RegisterForm() {
-  const { mutate: signUp, isLoading: isSigningUp } = useSignUp();
+  const {
+    mutate: signUp,
+    isLoading: isSigningUp,
+    error: signUpError,
+  } = useSignUp();
   const form = useForm<FormData>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -44,7 +48,15 @@ function RegisterForm() {
           onSubmit={form.handleSubmit(onSubmit)}
           className="space-y-5 px-5 xl:px-20"
         >
-          <Logo />
+          <div className="mb-5">
+            <Logo />
+          </div>
+          {signUpError instanceof Error && (
+            <FormMessage className="text-center">
+              {signUpError.message}
+            </FormMessage>
+          )}
+
           <FormDescription className="mt-5 text-center text-2xl font-medium tracking-tighter">
             Sign up to post photos.
           </FormDescription>

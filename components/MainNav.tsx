@@ -10,7 +10,7 @@ function MainNav() {
   const { currentUser, isAuthenticated } = useUser();
 
   return (
-    <nav className="p-5 xl:border-r xl:border-b-0 border-b xl:min-h-screen flex flex-col relative">
+    <nav className="p-5 xl:p-10 xl:border-r xl:border-b-0 border-b xl:min-h-screen flex flex-col relative">
       <div className="absolute right-2 top-2 block xl:hidden">
         <ModeToggle />
       </div>
@@ -28,12 +28,12 @@ function MainNav() {
         </div>
       )}
       {isAuthenticated && currentUser && (
-        <div className="flex xl:flex-col gap-2 mt-auto mb-5">
+        <div className="hidden xl:flex xl:flex-col gap-2 mt-8 mb-5 mx-auto items-center">
           <Image
             src="/default-user.jpg"
             alt=""
-            width={300}
-            height={300}
+            width={100}
+            height={100}
             className="rounded-full object-cover object-center"
           />
           <span>{currentUser.username}</span>

@@ -5,8 +5,10 @@ import { Button } from "@/components/ui/button";
 import { ModeToggle } from "./ModeToggle";
 import { useUser } from "@/contexts/UserContext";
 import { useLogout } from "@/hooks/useLogout";
+import { Drawer } from "vaul";
 
 import { Settings } from "lucide-react";
+import LoginForm from "@/pages/login/LoginForm";
 
 function MainNav() {
   const { currentUser, isAuthenticated } = useUser();
@@ -32,9 +34,24 @@ function MainNav() {
       </div>
       {!isAuthenticated && (
         <div className="flex xl:flex-col gap-2 mt-auto mb-5">
-          <Button asChild className="w-full">
-            <Link href="/login">Login</Link>
-          </Button>
+          <Drawer.Root>
+            <Drawer.Trigger asChild>
+              <Button>Login</Button>
+            </Drawer.Trigger>
+
+            <Drawer.Portal>
+              <Drawer.Overlay className="fixed inset-0 bg-black/40" />
+              <Drawer.Content className="bg-background flex flex-col rounded-t-[10px] h-[50%] mt-24 fixed bottom-0 left-0 right-0">
+                <div className="p-4 bg-background rounded-t-[10px] flex-1">
+                  <div className="mx-auto w-12 h-1.5 flex-shrink-0 rounded-full bg-primary mb-8" />
+                  <div className="max-w-md mx-auto">
+                    <LoginForm />
+                  </div>
+                </div>
+              </Drawer.Content>
+            </Drawer.Portal>
+          </Drawer.Root>
+
           <Button asChild variant="outline" className="w-full">
             <Link href="/register">Register</Link>
           </Button>

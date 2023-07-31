@@ -25,14 +25,7 @@ function ImageCard({
 
   return (
     <Card className="rounded-none snap-center">
-      <Image
-        src={image}
-        alt=""
-        width={400}
-        height={400}
-        quality={80}
-        loading="eager"
-      />
+      <Image src={image} alt="" width={400} height={400} quality={80} />
       <CardContent className="flex p-4 items-center justify-between gap-5">
         <div className="flex gap-3 items-center">
           <Image

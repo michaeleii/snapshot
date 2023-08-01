@@ -34,7 +34,7 @@ function MainNav() {
       </div>
       {!isAuthenticated && (
         <div className="flex xl:flex-col gap-2 mt-auto mb-5">
-          <Drawer.Root>
+          {/* <Drawer.Root>
             <Drawer.Trigger asChild>
               <Button>Login</Button>
             </Drawer.Trigger>
@@ -50,8 +50,10 @@ function MainNav() {
                 </div>
               </Drawer.Content>
             </Drawer.Portal>
-          </Drawer.Root>
-
+          </Drawer.Root> */}
+          <Button asChild className="w-full">
+            <Link href="/login">Login</Link>
+          </Button>
           <Button asChild variant="outline" className="w-full">
             <Link href="/register">Register</Link>
           </Button>

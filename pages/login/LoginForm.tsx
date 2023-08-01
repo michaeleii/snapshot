@@ -38,49 +38,53 @@ function LoginForm() {
   } = useLogin();
   const onSubmit = (values: FormData) => login(values);
   return (
-    <Form {...form}>
-      <form
-        onSubmit={form.handleSubmit(onSubmit)}
-        className="space-y-5 px-5 xl:px-20"
-      >
-        <h1 className="mb-5 font-bold text-3xl text-center">Login</h1>
-        {loginError instanceof Error && (
-          <FormMessage className="text-center">
-            {loginError.message}
-          </FormMessage>
-        )}
+    <div className="flex flex-col min-h-screen justify-center">
+      <Form {...form}>
+        <form
+          onSubmit={form.handleSubmit(onSubmit)}
+          className="space-y-5 px-5 xl:px-20"
+        >
+          <div className="mb-5">
+            <Logo />
+          </div>
+          {loginError instanceof Error && (
+            <FormMessage className="text-center">
+              {loginError.message}
+            </FormMessage>
+          )}
 
-        <FormField
-          control={form.control}
-          name="email"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Email</FormLabel>
-              <FormControl>
-                <Input type="email" {...field} disabled={isLoggingIn} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name="password"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Password</FormLabel>
-              <FormControl>
-                <Input type="password" {...field} disabled={isLoggingIn} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <Button type="submit" className="w-full" disabled={isLoggingIn}>
-          {isLoggingIn ? "Logging In..." : "Login"}
-        </Button>
-      </form>
-    </Form>
+          <FormField
+            control={form.control}
+            name="email"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Email</FormLabel>
+                <FormControl>
+                  <Input type="email" {...field} disabled={isLoggingIn} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="password"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Password</FormLabel>
+                <FormControl>
+                  <Input type="password" {...field} disabled={isLoggingIn} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <Button type="submit" className="w-full" disabled={isLoggingIn}>
+            {isLoggingIn ? "Logging In..." : "Login"}
+          </Button>
+        </form>
+      </Form>
+    </div>
   );
 }
 export default LoginForm;

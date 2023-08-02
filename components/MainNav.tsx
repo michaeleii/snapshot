@@ -55,9 +55,9 @@ function MainNav() {
       {isAuthenticated && (
         <div className="flex xl:flex-col gap-2 mt-auto mb-5">
           <Button asChild className="w-full">
-            <Link href="/upload">Create Post</Link>
+            <Link href="/create">Create Post</Link>
           </Button>
-          <Button variant="outline" asChild className="w-full hidden xl:flex">
+          <Button variant="secondary" asChild className="w-full hidden xl:flex">
             <Link href="/settings">Settings</Link>
           </Button>
           <Button

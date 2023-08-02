@@ -1,22 +1,12 @@
 import MainLayout from "@/components/MainLayout";
 import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { useCreatePost } from "@/hooks/useCreatePost";
 import ProtectedRoute from "@/components/ProtectedRoute";
 
 function Upload() {
-  const {
-    mutate: createPost,
-    isLoading: isUploading,
-    error: ImageUploadError,
-  } = useCreatePost();
+  const { mutate: createPost, isLoading: isUploading } = useCreatePost();
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     if (e.target instanceof HTMLFormElement) {
@@ -36,7 +26,7 @@ function Upload() {
         <div className="xl:min-h-screen w-full flex justify-center items-center xl:border mt-20 xl:mt-0">
           <Card className="max-w-md xl:border border-0">
             <CardHeader>
-              <CardTitle>Create post</CardTitle>
+              <CardTitle>Upload image</CardTitle>
             </CardHeader>
             <CardContent>
               <form onSubmit={handleSubmit} className="space-y-5">

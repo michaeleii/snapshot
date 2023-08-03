@@ -10,7 +10,6 @@ export function useGenerateImage() {
     mutationFn: ({ prompt, apiKey }: { prompt: string; apiKey: string }) =>
       generateImage(prompt, apiKey),
     onSuccess: () => {
-      console.log("success");
       router.replace("/");
     },
   });

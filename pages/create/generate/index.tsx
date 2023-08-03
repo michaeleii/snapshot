@@ -6,13 +6,13 @@ import { Textarea } from "@/components/ui/textarea";
 import { Input } from "@/components/ui/input";
 import { useGenerateImage } from "@/hooks/useGeneratePost";
 import Link from "next/link";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "@radix-ui/react-tooltip";
+
 import { QuestionMarkCircleIcon } from "@heroicons/react/20/solid";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
 
 function Generate() {
   const {
@@ -46,31 +46,27 @@ function Generate() {
                       placeholder="OPENAI_API_KEY"
                       disabled={isGenerating}
                     />
-                    <TooltipProvider>
-                      <Tooltip>
-                        <TooltipTrigger>
-                          <Button
-                            variant="ghost"
-                            onClick={(e) => e.preventDefault()}
-                          >
-                            <QuestionMarkCircleIcon className="w-5 h-5" />
-                          </Button>
-                        </TooltipTrigger>
-                        <TooltipContent>
-                          <p className="text-sm p-5 border rounded-lg bg-background max-w-sm">
-                            To generate an image, you&apos;ll need to sign up to{" "}
-                            <Button asChild variant="link" className="p-0 m-0">
-                              <Link className="" href="https://openai.com">
-                                https://openai.com
-                              </Link>
-                            </Button>{" "}
-                            and create a new API key.
-                            <br />
-                            ($18 of free credit is available for new users)
-                          </p>
-                        </TooltipContent>
-                      </Tooltip>
-                    </TooltipProvider>
+
+                    <Popover>
+                      <PopoverTrigger>
+                        <Button variant="ghost" type="button">
+                          <QuestionMarkCircleIcon className="w-5 h-5" />
+                        </Button>
+                      </PopoverTrigger>
+                      <PopoverContent side="top">
+                        <p className="text-sm">
+                          To generate an image, you&apos;ll need to sign up to{" "}
+                          <Button asChild variant="link" className="p-0 m-0">
+                            <Link className="" href="https://openai.com">
+                              https://openai.com
+                            </Link>
+                          </Button>{" "}
+                          and create a new API key.
+                          <br />
+                          ($18 of free credit is available for new users)
+                        </p>
+                      </PopoverContent>
+                    </Popover>
                   </div>
 
                   <Textarea

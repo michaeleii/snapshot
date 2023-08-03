@@ -1,11 +1,10 @@
 import supabase from "./supabase";
 
 export async function generateImage(prompt: string, apiKey: string) {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/generate`, {
+  const res = await fetch(`/api/generate`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      mode: "cors",
     },
     body: JSON.stringify({ prompt, apiKey }),
   });

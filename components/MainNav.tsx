@@ -9,7 +9,7 @@ import { useLogout } from "@/hooks/useLogout";
 import { Settings } from "lucide-react";
 
 function MainNav() {
-  const { currentUser, isAuthenticated } = useUser();
+  const { currentUser, isAuthenticated, isLoadingUser } = useUser();
 
   const { mutate: logout, isLoading: isLoggingOut } = useLogout();
 
@@ -18,7 +18,7 @@ function MainNav() {
       <div className="absolute right-2 top-2 block xl:hidden">
         <ModeToggle />
       </div>
-      {isAuthenticated && (
+      {!isLoadingUser && isAuthenticated && (
         <div className="absolute left-2 top-2 block xl:hidden">
           <Button asChild variant="ghost" className="w-full xl:hidden">
             <Link href="/settings">
@@ -30,7 +30,7 @@ function MainNav() {
       <div className="p-5">
         <Logo />
       </div>
-      {!isAuthenticated && (
+      {!isLoadingUser && !isAuthenticated && (
         <div className="flex xl:flex-col gap-2 mt-auto mb-5">
           <Button asChild className="w-full">
             <Link href="/login">Login</Link>

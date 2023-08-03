@@ -6,6 +6,13 @@ import { Textarea } from "@/components/ui/textarea";
 import { Input } from "@/components/ui/input";
 import { useGenerateImage } from "@/hooks/useGeneratePost";
 import Link from "next/link";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@radix-ui/react-tooltip";
+import { QuestionMarkCircleIcon } from "@heroicons/react/20/solid";
 
 function Generate() {
   const {
@@ -32,23 +39,40 @@ function Generate() {
             <CardContent>
               <form onSubmit={handleSubmit} className="space-y-5">
                 <div className="grid w-full items-center gap-4">
-                  <Input
-                    type="password"
-                    name="apiKey"
-                    placeholder="OPENAI_API_KEY"
-                    disabled={isGenerating}
-                  />
-                  <p className="text-sm text-muted-foreground ml-2 mb-5">
-                    To generate an image, you&apos;ll need to sign up to{" "}
-                    <Button asChild variant="link" className="p-0">
-                      <Link className="" href="https://openai.com">
-                        https://openai.com
-                      </Link>
-                    </Button>{" "}
-                    and create a new API key.
-                    <br />
-                    ($18 of free credit is available for new users)
-                  </p>
+                  <div className="flex gap-2">
+                    <Input
+                      type="password"
+                      name="apiKey"
+                      placeholder="OPENAI_API_KEY"
+                      disabled={isGenerating}
+                    />
+                    <TooltipProvider>
+                      <Tooltip>
+                        <TooltipTrigger>
+                          <Button
+                            variant="ghost"
+                            onClick={(e) => e.preventDefault()}
+                          >
+                            <QuestionMarkCircleIcon className="w-5 h-5" />
+                          </Button>
+                        </TooltipTrigger>
+                        <TooltipContent>
+                          <p className="text-sm p-5 border rounded-lg bg-background max-w-sm">
+                            To generate an image, you&apos;ll need to sign up to{" "}
+                            <Button asChild variant="link" className="p-0 m-0">
+                              <Link className="" href="https://openai.com">
+                                https://openai.com
+                              </Link>
+                            </Button>{" "}
+                            and create a new API key.
+                            <br />
+                            ($18 of free credit is available for new users)
+                          </p>
+                        </TooltipContent>
+                      </Tooltip>
+                    </TooltipProvider>
+                  </div>
+
                   <Textarea
                     name="prompt"
                     placeholder="Enter a detailed description of the image you want to generate."

@@ -57,7 +57,7 @@ function MainNav() {
           <Button asChild className="w-full">
             <Link href="/create">Create Post</Link>
           </Button>
-          <Button variant="secondary" asChild className="w-full hidden xl:flex">
+          <Button variant="outline" asChild className="w-full hidden xl:flex">
             <Link href="/settings">Settings</Link>
           </Button>
           <Button

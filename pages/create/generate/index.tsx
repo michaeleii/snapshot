@@ -1,49 +1,50 @@
 import MainLayout from "@/components/MainLayout";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { useCreatePost } from "@/hooks/useCreatePost";
 import ProtectedRoute from "@/components/ProtectedRoute";
+import { Textarea } from "@/components/ui/textarea";
+import { Input } from "@/components/ui/input";
+import { useGenerateImage } from "@/hooks/useGeneratePost";
 
 function Generate() {
   const {
-    mutate: createPost,
-    isLoading: isUploading,
-    error: ImageUploadError,
-  } = useCreatePost();
-  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    mutate: generateImage,
+    isLoading: isGenerating,
+    data: imageUrl,
+  } = useGenerateImage();
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (e.target instanceof HTMLFormElement) {
-      const formData = new FormData(e.target);
-
-      const image = formData.get("picture");
-      console.log(image);
-      if (image instanceof File) {
-        console.log(formData);
-        createPost(image);
-      }
+      const apiKey = e.target.apiKey.value;
+      const prompt = e.target.prompt.value;
+      generateImage({ apiKey, prompt });
     }
-  }
+  };
   return (
     <ProtectedRoute>
       <MainLayout>
         <div className="xl:min-h-screen w-full flex justify-center items-center xl:border mt-20 xl:mt-0">
-          <Card className="max-w-md xl:border border-0">
+          <Card className="max-w-md xl:border border-0 w-full">
             <CardHeader>
-              <CardTitle>Create post</CardTitle>
+              <CardTitle>Generate image</CardTitle>
             </CardHeader>
             <CardContent>
               <form onSubmit={handleSubmit} className="space-y-5">
                 <div className="grid w-full items-center gap-4">
                   <Input
-                    name="picture"
-                    id="picture"
-                    type="file"
-                    accept="image/png, image/jpeg"
+                    type="password"
+                    name="apiKey"
+                    id=""
+                    placeholder="OPENAI_API_KEY"
+                  />
+                  <Textarea
+                    name="prompt"
+                    placeholder="Enter a detailed description of the image you want to generate."
+                    disabled={isGenerating}
                   />
                 </div>
-                <Button className="w-full" disabled={isUploading}>
-                  {isUploading ? "Uploading..." : "Upload"}
+                <Button className="w-full" disabled={isGenerating}>
+                  {isGenerating ? "Generating..." : "Generate"}
                 </Button>
               </form>
             </CardContent>

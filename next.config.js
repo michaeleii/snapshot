@@ -7,6 +7,12 @@ const nextConfig = {
       "oaidalleapiprodscus.blob.core.windows.net",
     ],
   },
+  rewrites: async () => [
+    {
+      source: "/api/:path*",
+      destination: "https://xuwaojgdqf.us17.qoddiapp.com/api/:path*",
+    },
+  ],
 };
 
 module.exports = nextConfig;

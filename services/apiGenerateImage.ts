@@ -5,6 +5,7 @@ export async function generateImage(prompt: string, apiKey: string) {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
+      mode: "cors",
     },
     body: JSON.stringify({ prompt, apiKey }),
   });

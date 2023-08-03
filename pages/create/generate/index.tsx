@@ -55,15 +55,22 @@ function Generate() {
                       </PopoverTrigger>
                       <PopoverContent side="top">
                         <p className="text-sm">
-                          To generate an image, you&apos;ll need to sign up to{" "}
+                          <span>
+                            To generate an image, you&apos;ll need to sign up to
+                          </span>{" "}
                           <Button asChild variant="link" className="p-0 m-0">
-                            <Link className="" href="https://openai.com">
+                            <Link
+                              className="m-0 p-0"
+                              href="https://openai.com"
+                              target="_blank"
+                            >
                               https://openai.com
                             </Link>
                           </Button>{" "}
-                          and create a new API key.
-                          <br />
-                          ($18 of free credit is available for new users)
+                          and create a new API key. <br /> <br />{" "}
+                          <span>
+                            ($18 of free credit is available for new users)
+                          </span>
                         </p>
                       </PopoverContent>
                     </Popover>
